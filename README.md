@@ -15,22 +15,8 @@ Create a database with the name **cms_pages**
 ## pages
 **ID** is the PRIMARY KEY, so keep in mind that you tick **AUTO_INCREMENT** and dont't let it be null, so tick **NOT NULL**. 
 
-| Name | Typ |
-| ------ | ------ |
-| ID | int(11) |
-| PageName | varchar(255) |
-| PageContent | text |
-| Keywords | varchar(255) |
-| MetaDescription | varchar(400) |
-| Timestamp | timestamp |
+![pages](https://cloud.githubusercontent.com/assets/23216069/25011894/2816ea54-206f-11e7-8d46-8092789ecd3f.PNG)
 
 
 ## users
-| Name | Type |
-| ------ | ------ |
-|  | ] |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+![users](https://cloud.githubusercontent.com/assets/23216069/25011893/28164428-206f-11e7-9ffb-3797c0af562b.PNG)
