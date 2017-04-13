@@ -1,0 +1,37 @@
+
+Form erstellen
+
+Textfield - AddPages (Button)
+In das Textfeld wird der name der neuen Seite eingegeben.
+Wird der Button gedrückt, so wird die neue Seite in die DB eingefügt (der PageName)
+
+/******************************/
+Alle Seiten anzeigen
+=>
+Alle pages einträge aus der DB hohlen und wie folgt ausgeben:
+	Seitenname 	| 	Edit Page Content
+				|	Delete Page
+
+Das ganze in einer for-schleife jeweils
+Seitenname: aus der DB hohlen und anzeigen
+Edit Page Content: EditPage.php aufrufen mittels Pages.id, öffnet man edit page erneut muss der inhalt der zuvor 
+	gespeichert wurde wieder in den TextFeldern eingetragen sein.
+Delete Page: Seite aus der DB löschen
+
+Nach dem drücken der Button AddPages, Delete Page soll man wieder auf die Übersicht zurück kommen.
+
+Menü ausgeben: 
+In einer Schleife: alle Pages.name ausgeben in einem <li> ... </li>
+
+Link mit ID:
+<a href="SubPage.php?ID=<?php echo $row_CMSPage['ID']; ?>">
+
+Seite mit Inhalt ausgeben:
+Wenn die Seite aufgerufen wird wird in der URL wieder ein Parameter mitgegeben (ID)
+Dann wird der name und der content der Seite ausgegeben welche die selbe ID hat
+<h1>Pages.PageName</h1>
+Page content
+
+Footer:
+Link mit dem Namen: AdminPage 
+Verweist auf addpages.php
