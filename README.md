@@ -1,8 +1,19 @@
 # CMS built with PHP and MySQL
 
-This project is a CMS built with PHP, MySQL, HTML and CSS.
+This project is a CMS built with PHP, MySQL, HTML and CSS.<br>
+Used frameworks/libraries: jQuery, BootStrap
 
 # How it works:
+The index.php file is a file which contains no content.<br>
+To add content log in into the **admin dashboard**, just click the link in the footer.<br>
+Or you can enter the **admin dashboard** by adding **/AddPages.php** to the URL.<br>
+
+If the user is not registered you have to create an account and then login. If you have an account just login.<br>
+
+Now you are at the **dashboard** where you can **add pages and delete pages**.<br>
+
+
+# How to get started:
 
 ### 1. Create the database
 Before you can start using it, you have to create the database.
