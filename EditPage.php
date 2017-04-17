@@ -6,6 +6,7 @@ if (!isset($_SESSION['userid'])) {
 }
 
 include './header.php';
+include './menu.php';
 ?>
 
 <div id="content">

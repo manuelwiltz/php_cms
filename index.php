@@ -1,11 +1,12 @@
 <?php
 include './header.php';
+include './menu.php';
 ?>
 
 <div id="content">
 
     <?php
-    $statement = "SELECT * FROM pages where id = 1;";
+    $statement = "SELECT * FROM pages;";
 
     if ($_res = $conn->query($statement)) {
 
@@ -17,7 +18,9 @@ include './header.php';
                 $name = $row['PageName'];
                 $pageContent = $row['PageContent'];
 
+                echo "<h2>" . $name . "</h2>";
                 echo $pageContent;
+                break;
             }
         } else {
             echo '<p>Diese Seite beinhaltet keinen Content</p>';

@@ -2,6 +2,7 @@
 session_start();
 
 include './header.php';
+include './menu.php';
 ?>
 
 <div id="content">

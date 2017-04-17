@@ -2,6 +2,7 @@
 session_start();
 
 include './DB_connection.php';
+include './menu.php';
 ?>
 <!DOCTYPE html>
 <html>

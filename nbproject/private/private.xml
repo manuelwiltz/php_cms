@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/EditPage.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/index.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/register.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/header.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/SubPage.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/login.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/AddPages.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/DeletePage.php</file>
-            <file>file:/C:/xampp/htdocs/PHP_Projects/CMS/footer.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
