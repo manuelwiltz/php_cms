@@ -7,10 +7,6 @@ include './menu.php';
 
 <div id="content">
 
-    <!-- Seitenname aus der DB ausgeben -->
-
-    <!-- Seitencontent aus der DB ausgeben -->
-
     <?php
     $statement = "SELECT * FROM pages where id = " . $_GET['id'] . ";";
 

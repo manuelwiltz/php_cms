@@ -1,3 +1,23 @@
+<?php
+if (!isset($_SESSION['userid'])) {
+    header("Location: login.php");
+}
+
+include '../DB_connection.php';
+
+$statement = "SELECT username FROM users where id = " . $_SESSION['userid'];
+
+if ($res = $conn->query($statement)) {
+    if ($res->num_rows > 0) {
+        $row = $res->fetch_assoc();
+        $username = $row['username'];
+    }
+} else {
+    $username = "";
+}
+
+?>
+
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -17,7 +37,7 @@
                 <li><a href="settings.php">Settings</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Welcome, Manuel</a></li>
+                <li><a href="#">Welcome, <?php echo $username ?></a></li>
                 <li><a href="login.php">Logout</a></li>
             </ul>
         </div>
