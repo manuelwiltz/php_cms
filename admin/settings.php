@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Area | Settings</title>
+        <title>Admin | Settings</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>

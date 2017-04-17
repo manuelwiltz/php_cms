@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Area | Users</title>
+        <title>Admin | Users</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
@@ -44,12 +44,12 @@
                         ?>
                     </div>
                     <div class="col-md-9">
-                        <!-- Website Overview -->
                         <div class="panel panel-default">
                             <div class="panel-heading main-color-bg">
                                 <h3 class="panel-title">Users</h3>
                             </div>
                             <div class="panel-body">
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="bold">Search username: </p>
@@ -60,7 +60,9 @@
 
                                     </div>
                                 </div>
+
                                 <hr class="medium">
+
                                 <p class="bold">All users: </p>
                                 <table class="table table-striped table-hover">
                                     <tr>
@@ -72,7 +74,7 @@
                                     </tr>
 
                                     <?php
-                                    $statement = "SELECT * FROM users";
+                                    $statement = "SELECT * FROM users ORDER BY create_date DESC";
 
                                     if ($res = $conn->query($statement)) {
 
@@ -80,6 +82,7 @@
 
                                             while ($row = $res->fetch_assoc()) {
 
+                                                $id = $row['id'];
                                                 $name = $row['firstname'] . " " . $row['lastname'];
                                                 $username = $row['username'];
                                                 $email = $row['email'];
@@ -90,7 +93,7 @@
                                                 echo '<td>' . $username . '</td>';
                                                 echo '<td>' . $email . '</td>';
                                                 echo '<td>' . $joined . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
                                                 echo '</tr>';
                                             }
                                         }
@@ -102,12 +105,107 @@
 
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading main-color-bg">
+                                <h3 class="panel-title">Users</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row padding-md">
+                                    <p class="bold">Add new user</p>
+                                    <p>Fill in the form to register a new user</p>
+                                    <hr class="medium">
+                                </div>
+
+
+                                <?php
+                                if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['password2'])) {
+
+                                    $errors = [];
+
+                                    $firstname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['firstname']))));
+                                    $lastname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['lastname']))));
+
+                                    $username = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['username']))));
+                                    $email = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['email']))));
+
+                                    $password1 = md5($conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['password1'])))));
+                                    $password2 = md5($conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['password2'])))));
+
+                                    $statement = "SELECT * FROM users where username = '" . $username . "';";
+                                    if ($result = $conn->query($statement)) {
+                                        if ($result->num_rows > 0) {
+                                            array_push($errors, "Username is allready taken!");
+                                        }
+                                    }
+
+                                    if (!($password1 === $password2)) {
+                                        array_push($errors, 'Email or passwords do not match!');
+                                    } else if ((strpos($email, "@") == FALSE) || (strpos($email, ".") == FALSE)) {
+                                        array_push($errors, 'Email or passwords do not match!');
+                                    }
+
+                                    if (count($errors) == 0) {
+                                        $statement = "INSERT INTO users (id, firstname, lastname, username, email, password, create_date) VALUES (NULL, '" . $firstname . "', '" . $lastname . "', '" . $username . "', '" . $email . "', '" . $password1 . "', CURRENT_TIMESTAMP);";
+
+                                        if ($result = $conn->query($statement)) {
+                                            echo '<script>window.location.replace("users.php");</script>';
+                                        }
+                                    } else {
+                                        echo '<div class="row padding-md">';
+                                        foreach ($errors as $value) {
+                                            echo '<p class="bold" style="color: red;">' . $value . '</p>';
+                                        }
+                                        echo '</div>';
+                                    }
+                                }
+                                ?>
+
+                                <div class="row padding-md">
+                                    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+                                        <div class="form-group">
+                                            <label for="text">Firstname:</label>
+                                            <input type="text" class="form-control" name="firstname" placeholder="Enter firstname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">Lastname:</label>
+                                            <input type="text" class="form-control" name="lastname" placeholder="Enter lastname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">Username:</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Enter username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" class="form-control" name="password1" placeholder="Enter password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Repeat password:</label>
+                                            <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+                                        </div>
+                                        <button type="submit" class="btn btn-default btn-green">Register user</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <?php
-        include './admin_footer.php';
-        ?>
+<?php
+include './admin_footer.php';
+?>
 
         <script>
             document.getElementById("cms_searchUser-btn").addEventListener("click", function () {

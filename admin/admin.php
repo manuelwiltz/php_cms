@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Area | Dashboard</title>
+        <title>Admin | Dashboard</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
@@ -50,25 +50,20 @@
                                 <h3 class="panel-title">Website Overview</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="well dash-box">
                                         <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo cms_getCountUsers() ?></h2>
                                         <h4>Users</h4>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="well dash-box">
                                         <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <?php echo cms_getCountSites() ?></h2>
                                         <h4>Pages</h4>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="well dash-box">
-                                        <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <?php echo cms_getCountSites() ?></h2>
-                                        <h4>Posts</h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-4">
                                     <div class="well dash-box">
                                         <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <?php echo cms_getVisitors(); ?></h2>
                                         <h4>Visitors</h4>
@@ -104,7 +99,7 @@
                                                 echo '<td>' . $name . '</td>';
                                                 echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
                                                 echo '<td>' . $created . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="#">Delete</a></td></td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
                                                 echo '</tr>';
                                             }
                                         }
@@ -143,7 +138,7 @@
                                                 echo '<td>' . $username . '</td>';
                                                 echo '<td>' . $email . '</td>';
                                                 echo '<td>' . $joined . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
                                                 echo '</tr>';
                                             }
                                         }

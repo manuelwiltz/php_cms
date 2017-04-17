@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Area | Pages</title>
+        <title>Admin | Pages</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
@@ -89,7 +89,7 @@
                                                 echo '<td>' . $name . '</td>';
                                                 echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
                                                 echo '<td>' . $created . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php?id='.$id.'">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id='.$id.'">View</a> <a class="btn btn-danger" href="#">Delete</a></td></td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
                                                 echo '</tr>';
                                             }
                                         }
@@ -106,7 +106,7 @@
         <?php
         include './admin_footer.php';
         ?>
-        
+
         <script>
             document.getElementById("cms_addPage-btn").addEventListener("click", function () {
                 var sendData = {};

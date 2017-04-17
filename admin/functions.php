@@ -159,7 +159,7 @@ function cms_getUsers($username) {
                 $output .= '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
                 $output .= '</tr>';
             }
-            
+
             $output .= '</table>';
             echo $output;
         }

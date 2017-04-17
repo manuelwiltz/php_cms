@@ -18,6 +18,10 @@ body{
     margin-bottom: 5px;
 }
 
+.padding-md {
+    padding: 12px;
+}
+
 .btn-green {
     background-color: #2ecc71;
     border-color: #27ae60;
