@@ -2,6 +2,10 @@
 
 include '../DB_connection.php';
 
+if (isset($_POST['cms_setWebsiteTitle'])) {
+    cms_setWebsiteTitle($_POST['cms_setWebsiteTitle']);
+}
+
 /**
  * Returns the website name
  * @global type $conn
@@ -24,6 +28,12 @@ function cms_getWebsiteTitle() {
     return "Title";
 }
 
+/**
+ * Set the website title
+ * @global type $conn
+ * @param type $newTitle
+ * @return string
+ */
 function cms_setWebsiteTitle($newTitle) {
     
     global $conn;

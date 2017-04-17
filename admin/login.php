@@ -10,6 +10,10 @@
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
     </head>
     <body>
+        
+        <?php
+        include './functions.php';
+        ?>
 
         <nav class="navbar navbar-default">
             <div class="container">
@@ -58,9 +62,9 @@
             </div>
         </section>
 
-        <footer id="footer">
-            <p>Copyright AdminStrap, &copy; 2017</p>
-        </footer>
+        <?php
+        include './admin_footer.php';
+        ?>
 
         <script>
             CKEDITOR.replace('editor1');

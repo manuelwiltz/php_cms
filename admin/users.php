@@ -13,6 +13,7 @@
 
         <?php
         include './admin_menu.php';
+        include './functions.php';
         ?>
 
         <header id="header">
@@ -95,9 +96,9 @@
             </div>
         </section>
 
-        <footer id="footer">
-            <p>Copyright AdminStrap, &copy; 2017</p>
-        </footer>
+        <?php
+        include './admin_footer.php';
+        ?>
 
         <script>
             CKEDITOR.replace('editor1');

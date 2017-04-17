@@ -13,7 +13,6 @@
 
         <?php
         include './admin_menu.php';
-        
         include './functions.php';
         ?>
 
@@ -55,29 +54,15 @@
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
                                         <p class="bold">Website title: </p>
-                                        <input class="form-control" type="text" placeholder="Enter new website title">
-                                        <input type="submit" value="Change title" class="btn btn-default btn-green margin-top-sm">
+                                        <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
+                                        <input id="cms_setWebsiteTitle-btn" type="submit" value="Change title" class="btn btn-default btn-green margin-top-sm">
                                     </div>
                                 </div>
 
                                 <hr class="medium">
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Filter Settings...">
-                                    </div>
-                                </div>
-                                
-                                <hr class="medium">
-                                
-                                <div class="row padding-md">
-                                    <div class="col-md-12">
-                                        <input type="submit" value="Save settings" class="btn btn-default btn-green margin-top-sm">
-                                    </div>
-                                </div>
-                                
                                 <br>
-                                
+
                             </div>
                         </div>
 
@@ -86,12 +71,20 @@
             </div>
         </section>
 
-        <footer id="footer">
-            <p>Copyright AdminStrap, &copy; 2017</p>
-        </footer>
+        <?php
+        include './admin_footer.php';
+        ?>
 
         <script>
-            CKEDITOR.replace('editor1');
+            document.getElementById("cms_setWebsiteTitle-btn").addEventListener("click", function () {
+                var sendData = {};
+                sendData["cms_setWebsiteTitle"] = document.getElementById("cms_setWebsiteTitle-value").value;
+                $.post("functions.php", sendData, receiveDataFromPHP);
+            });
+
+            function receiveDataFromPHP(data, status) {
+                console.log(data);
+            }
         </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
