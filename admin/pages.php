@@ -79,11 +79,8 @@
                                     $statement = "SELECT * FROM pages ORDER BY Timestamp DESC";
 
                                     if ($res = $conn->query($statement)) {
-
                                         if ($res->num_rows > 0) {
-
                                             while ($row = $res->fetch_assoc()) {
-
                                                 $id = $row['ID'];
                                                 $name = $row['PageName'];
                                                 $created = $row['Timestamp'];

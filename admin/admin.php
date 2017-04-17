@@ -77,7 +77,6 @@
                             </div>
                         </div>
 
-                        <!-- Latest Users -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Latest Sites</h3>
@@ -85,35 +84,71 @@
                             <div class="panel-body">
                                 <table class="table table-striped table-hover">
                                     <tr>
+                                        <th>Title</th>
+                                        <th>Published</th>
+                                        <th>Created</th>
+                                        <th></th>
+                                    </tr>
+
+                                    <?php
+                                    $statement = "SELECT * FROM pages ORDER BY Timestamp DESC LIMIT 2";
+
+                                    if ($res = $conn->query($statement)) {
+                                        if ($res->num_rows > 0) {
+                                            while ($row = $res->fetch_assoc()) {
+                                                $id = $row['ID'];
+                                                $name = $row['PageName'];
+                                                $created = $row['Timestamp'];
+
+                                                echo '<tr>';
+                                                echo '<td>' . $name . '</td>';
+                                                echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
+                                                echo '<td>' . $created . '</td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="#">Delete</a></td></td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Newest User</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-hover">
+                                    <tr>
                                         <th>Name</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>Joined</th>
+                                        <th></th>
                                     </tr>
-                                    <tr>
-                                        <td>Jill Smith</td>
-                                        <td>jillsmith@gmail.com</td>
-                                        <td>Dec 12, 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Eve Jackson</td>
-                                        <td>ejackson@yahoo.com</td>
-                                        <td>Dec 13, 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>jdoe@gmail.com</td>
-                                        <td>Dec 13, 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stephanie Landon</td>
-                                        <td>landon@yahoo.com</td>
-                                        <td>Dec 14, 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mike Johnson</td>
-                                        <td>mjohnson@gmail.com</td>
-                                        <td>Dec 15, 2016</td>
-                                    </tr>
+                                    <?php
+                                    $statement = "SELECT * FROM users ORDER BY create_date DESC LIMIT 1";
+
+                                    if ($res = $conn->query($statement)) {
+                                        if ($res->num_rows > 0) {
+                                            while ($row = $res->fetch_assoc()) {
+
+                                                $name = $row['firstname'] . " " . $row['lastname'];
+                                                $username = $row['username'];
+                                                $email = $row['email'];
+                                                $joined = $row['create_date'];
+
+                                                echo '<tr>';
+                                                echo '<td>' . $name . '</td>';
+                                                echo '<td>' . $username . '</td>';
+                                                echo '<td>' . $email . '</td>';
+                                                echo '<td>' . $joined . '</td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
