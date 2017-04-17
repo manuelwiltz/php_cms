@@ -1,5 +1,5 @@
 <div id="footer">
-    <a href="AddPages.php">Admin - Bereich</a>
+    <a href="admin.php">Admin - Bereich</a>
     <p>Copyright 2017 Manuel Wiltz</p>
 </div>
 

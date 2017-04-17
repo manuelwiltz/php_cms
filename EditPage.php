@@ -53,17 +53,17 @@ include './menu.php';
 
         <div class="form-group">
             <label for="comment">Page Content:</label>
-            <textarea class="form-control" name="pageContent" rows="10" id="comment"><?php echo $pageContent; ?></textarea>
+            <textarea class="form-control" name="pageContent" rows="10" id="comment"><?php echo trim($pageContent); ?></textarea>
         </div>
 
         <div class="form-group">
             <label for="comment">Keywords (max. 255 chars):</label>
-            <textarea class="form-control" name="keywords" rows="5" id="comment"><?php echo $keywords; ?></textarea>
+            <textarea class="form-control" name="keywords" rows="5" id="comment"><?php echo trim($keywords); ?></textarea>
         </div>
 
         <div class="form-group">
             <label for="comment">Meta Description (max. 400 chars):</label>
-            <textarea class="form-control" name="metaDescription" rows="5" id="comment"><?php echo $metaDescription; ?></textarea>
+            <textarea class="form-control" name="metaDescription" rows="5" id="comment"><?php echo trim($metaDescription); ?></textarea>
         </div>
 
         <button id="update">Update Page</button>

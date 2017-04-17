@@ -27,7 +27,7 @@ include './menu.php';
 
             if ($_res = $conn->query($statement)) {
                 echo 'Seite erfolgreich hinzugefügt.';
-                header("Location:AddPages.php");
+                header("Location: admin.php");
                 exit;
             } else {
                 echo 'Error: ';

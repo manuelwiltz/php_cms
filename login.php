@@ -35,7 +35,7 @@ include './menu.php';
 
                     if (($row['username'] == $username) && ($row['password'] == $password)) {
                         $_SESSION['userid'] = $row['id'];
-                       header("Location: AddPages.php");
+                       header("Location: admin.php");
                     } else {
                         array_push($errors, "<p>Login Daten stimmen nicht überein!</p>");
                     }
