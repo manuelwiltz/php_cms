@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION['userid'])) {
+    unset($_SESSION['userid']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +17,7 @@
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
     </head>
     <body>
-        
+
         <?php
         include './functions.php';
         ?>
@@ -46,18 +53,54 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <form id="login" action="admin.php" class="well">
+                        <form id="login" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" class="well">
                             <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="text" class="form-control" placeholder="Enter Email">
+                                <label>Username</label>
+                                <input name="username" type="text" class="form-control" placeholder="Enter username">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input name="password" type="password" class="form-control" placeholder="Password">
                             </div>
                             <button type="submit" class="btn btn-default btn-block">Login</button>
                         </form>
                     </div>
+                </div>
+                <div class="row">
+                    <?php
+                    if (isset($_POST['username']) && isset($_POST['password'])) {
+                        $errors = [];
+
+                        $username = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['username']))));
+                        $password = md5($conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['password'])))));
+
+                        $statement = "select * from users where username = '" . $username . "';";
+                        if ($res = $conn->query($statement)) {
+
+                            if ($res->num_rows > 0) {
+
+                                $row = $res->fetch_assoc();
+
+                                if (($row['username'] == $username) && ($row['password'] == $password)) {
+                                    $_SESSION['userid'] = $row['id'];
+                                    header("Location: admin.php");
+                                } else {
+                                    array_push($errors, "<p style='color: red; font-weight: bold;'>Incorrect username or password!</p>");
+                                }
+                            } else {
+                                array_push($errors, "<p style='color: red; font-weight: bold;'>Incorrect username or password!</p>");
+                            }
+                        } else {
+                            array_push($errors, "<p style='color: red; font-weight: bold;'>An error occured!</p>");
+                        }
+
+                        if (count($errors) > 0) {
+                            foreach ($errors as $value) {
+                                echo '<h2 class="text-center" style="color: red;">' . $value . '</h2>';
+                            }
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </section>

@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['userid'])) {
+    header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,31 +58,77 @@
                                 <h3 class="panel-title">Edit Page</h3>
                             </div>
                             <div class="panel-body">
-                                <form>
+
+                                <?php
+                                if ((isset($_POST['title']) && $_POST['title'] != "") || (isset($_POST['editor1']) && $_POST['editor1'] != "") || (isset($_POST['keywords']) && $_POST['keywords'] != "") || (isset($_POST['meta']) && $_POST['meta'] != "")) {
+
+                                    $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
+                                    $title = $conn->real_escape_string((stripcslashes(trim($_POST['title']))));
+                                    $editor1 = $conn->real_escape_string((stripcslashes(trim($_POST['editor1']))));
+                                    $keywords = $conn->real_escape_string((stripcslashes(trim($_POST['keywords']))));
+                                    $meta = $conn->real_escape_string((stripcslashes(trim($_POST['meta']))));
+
+                                    $statement = "UPDATE pages SET PageName = '" . $title . "', PageContent = '" . $editor1 . "', Keywords = '" . $keywords . "', MetaDescription = '" . $meta . "' WHERE pages.ID = " . $id;
+
+                                    if ($_res = $conn->query($statement)) {
+                                        echo '<p class="bold" style="color: #2ecc71;">SUCCESS - changes successfully applied</p>';
+                                    } else {
+                                        echo '<p class="bold" style="color: red;">FAILURE - changes NOT applied</p>';
+                                        echo $conn->error;
+                                    }
+                                }
+
+
+
+
+                                $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
+
+                                $statement = "SELECT * FROM pages WHERE pages.id = " . $id;
+
+                                if ($res = $conn->query($statement)) {
+                                    if ($res->num_rows > 0) {
+                                        $row = $res->fetch_assoc();
+
+                                        $title = $row['PageName'];
+                                        $content = $row['PageContent'];
+                                        $keywords = $row['Keywords'];
+                                        $meta = $row['MetaDescription'];
+                                    }
+                                } else {
+                                    $title = "";
+                                    $content = "";
+                                    $keywords = "";
+                                    $meta = "";
+                                }
+                                ?>
+
+                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                                     <div class="form-group">
                                         <label>Page Title</label>
-                                        <input type="text" class="form-control" placeholder="Page Title" value="About">
+                                        <input name="title" type="text" class="form-control" placeholder="Page Title" value="<?php echo $title ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Page Body</label>
                                         <textarea name="editor1" class="form-control" placeholder="Page Body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <?php echo $content; ?>
                                         </textarea>
                                     </div>
+                                    <!--
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" checked> Published
                                         </label>
                                     </div>
+                                    -->
                                     <div class="form-group">
-                                        <label>Meta Tags</label>
-                                        <input type="text" class="form-control" placeholder="Add Some Tags..." value="tag1, tag2">
+                                        <label>Meta Tags (key1, key2, ...)</label>
+                                        <input name="keywords" type="text" class="form-control" placeholder="Add Some Tags..." value="<?php echo $keywords; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Description</label>
-                                        <input type="text" class="form-control" placeholder="Add Meta Description..." value="  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et ">
+                                        <input type="text" class="form-control" placeholder="Add Meta Description..." value="<?php echo $meta; ?>">
                                     </div>
-                                    <input type="submit" class="btn btn-default" value="Submit">
+                                    <input name="meta" type="submit" class="btn btn-default btn-green" value="Submit">
                                 </form>
                             </div>
                         </div>

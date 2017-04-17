@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['userid'])) {
+    header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -62,11 +69,11 @@
                                         <h4>Pages</h4>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <div class="well dash-box">
                                         <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <?php echo cms_getVisitors(); ?></h2>
-                                        <h4>Visitors</h4>
+                                        <h4>Hits</h4>
                                     </div>
                                 </div>
                             </div>

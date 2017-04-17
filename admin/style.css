@@ -40,6 +40,10 @@ body{
     color: white;
 }
 
+.success-font-color {
+    color: #2ecc71;
+}
+
 .badge {
     background-color: #27ae60;
 }

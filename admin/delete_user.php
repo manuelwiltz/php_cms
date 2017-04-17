@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['userid'])) {
+    header("Location: login.php");
+}
+?>
+<?php
 
 include '../DB_connection.php';
 

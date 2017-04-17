@@ -38,8 +38,9 @@ function cms_getWebsiteTitle() {
  * @return string
  */
 function cms_setWebsiteTitle($newTitle) {
-
+    
     global $conn;
+    $newTitle = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($newTitle))));
     $statement = "UPDATE site_info SET sitename = '" . $newTitle . "'";
 
     if ($res = $conn->query($statement)) {
@@ -119,7 +120,9 @@ function cms_getCountSites() {
  * @return string
  */
 function cms_addPage($pageName) {
+    
     global $conn;
+    $paneName = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($pageName))));
     $statement = "INSERT INTO pages (ID, PageName, PageContent, Keywords, MetaDescription, Timestamp) VALUES (NULL, '$pageName', NULL, NULL, NULL, CURRENT_TIMESTAMP)";
 
     if ($res = $conn->query($statement)) {
@@ -136,7 +139,9 @@ function cms_addPage($pageName) {
  * @return string
  */
 function cms_getUsers($username) {
+    
     global $conn;
+    $username = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($username))));
     $statement = "SELECT * FROM users where username like '%$username%'";
 
     if ($res = $conn->query($statement)) {
