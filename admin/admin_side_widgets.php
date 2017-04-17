@@ -7,6 +7,7 @@
     <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
 </div>
 
+<!--
 <div class="well">
     <h4>Disk Space Used</h4>
     <div class="progress">
@@ -21,3 +22,4 @@
         </div>
     </div>
 </div>
+-->
