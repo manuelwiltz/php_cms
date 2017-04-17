@@ -14,13 +14,24 @@ body{
     margin-top: 5px;
 }
 
+.margin-bottom-sm {
+    margin-bottom: 5px;
+}
+
 .btn-green {
     background-color: #2ecc71;
     border-color: #27ae60;
     color: white;
 }
-
 .btn-green:hover {
+    background-color: #27ae60;
+    color: white;
+}
+.btn-green:active {
+    background-color: #27ae60;
+    color: white;
+}
+.btn-green:focus {
     background-color: #27ae60;
     color: white;
 }

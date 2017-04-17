@@ -54,8 +54,8 @@
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
                                         <p class="bold">Add a new page to the site: </p>
-                                        <input class="form-control" type="text" placeholder="Page name">
-                                        <input type="submit" value="Create page" class="btn btn-default btn-green margin-top-sm">
+                                        <input id="cms_addPage-value" class="form-control" type="text" placeholder="Page name">
+                                        <input id="cms_addPage-btn" type="submit" value="Create page" class="btn btn-default btn-green margin-top-sm">
                                     </div>
                                 </div>
 
@@ -76,7 +76,7 @@
                                     </tr>
 
                                     <?php
-                                    $statement = "SELECT * FROM pages";
+                                    $statement = "SELECT * FROM pages ORDER BY Timestamp DESC";
 
                                     if ($res = $conn->query($statement)) {
 
@@ -101,7 +101,6 @@
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -110,6 +109,18 @@
         <?php
         include './admin_footer.php';
         ?>
+        
+        <script>
+            document.getElementById("cms_addPage-btn").addEventListener("click", function () {
+                var sendData = {};
+                sendData["cms_addPage"] = document.getElementById("cms_addPage-value").value;
+                $.post("functions.php", sendData, receiveDataFromPHP);
+            });
+
+            function receiveDataFromPHP(data, status) {
+                location.reload();
+            }
+        </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

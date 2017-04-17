@@ -53,14 +53,19 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="bold">Search username: </p>
-                                        <input class="form-control" type="text" placeholder="Username to look for...">
-                                        <input id="searchUser-btn" type="submit" value="Search user" class="btn btn-default btn-green margin-top-sm">
+                                        <input id="cms_searchUser-value" class="form-control" type="text" placeholder="Username to look for...">
+                                        <input id="cms_searchUser-btn" type="submit" value="Search user" class="btn btn-default btn-green margin-top-sm margin-bottom-sm">
+                                    </div>
+                                    <div id="search-output" class="col-md-12">
+
                                     </div>
                                 </div>
-                                <br>
+                                <hr class="medium">
+                                <p class="bold">All users: </p>
                                 <table class="table table-striped table-hover">
                                     <tr>
                                         <th>Name</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>Joined</th>
                                         <th></th>
@@ -76,13 +81,15 @@
                                             while ($row = $res->fetch_assoc()) {
 
                                                 $name = $row['firstname'] . " " . $row['lastname'];
+                                                $username = $row['username'];
                                                 $email = $row['email'];
                                                 $joined = $row['create_date'];
 
                                                 echo '<tr>';
-                                                echo '<td>'.$name.'</td>';
-                                                echo '<td>'.$email.'</td>';
-                                                echo '<td>'.$joined.'</td>';
+                                                echo '<td>' . $name . '</td>';
+                                                echo '<td>' . $username . '</td>';
+                                                echo '<td>' . $email . '</td>';
+                                                echo '<td>' . $joined . '</td>';
                                                 echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
                                                 echo '</tr>';
                                             }
@@ -98,12 +105,21 @@
             </div>
         </section>
 
-<?php
-include './admin_footer.php';
-?>
+        <?php
+        include './admin_footer.php';
+        ?>
 
         <script>
-            CKEDITOR.replace('editor1');
+            document.getElementById("cms_searchUser-btn").addEventListener("click", function () {
+                var sendData = {};
+                sendData["cms_searchUser"] = document.getElementById("cms_searchUser-value").value;
+                $.post("functions.php", sendData, receiveDataFromPHP);
+            });
+
+            function receiveDataFromPHP(data, status) {
+                console.log(data);
+                document.getElementById("search-output").innerHTML = data;
+            }
         </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
