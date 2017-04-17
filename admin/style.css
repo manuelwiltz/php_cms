@@ -20,6 +20,11 @@ body{
     color: white;
 }
 
+.btn-green:hover {
+    background-color: #27ae60;
+    color: white;
+}
+
 .badge {
     background-color: #27ae60;
 }

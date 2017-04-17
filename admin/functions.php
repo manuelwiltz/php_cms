@@ -45,4 +45,66 @@ function cms_setWebsiteTitle($newTitle) {
         return "Oups! An error occured, title not changed. Try later.";
     }
 }
+
+/**
+ * Returns the amount of visitors
+ * @global type $conn
+ * @return string
+ */
+function cms_getVisitors() {
+
+    global $conn;
+    $statement = "SELECT * from site_info";
+
+    if ($res = $conn->query($statement)) {
+
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+
+            $visitors = $row['views'];
+            return $visitors;
+        }
+    }
+    return "0";
+}
+
+/**
+ * Returns the amount of users
+ * @global type $conn
+ * @return string
+ */
+function cms_getCountUsers() {
+
+    global $conn;
+    $statement = "SELECT count(*) from users";
+
+    if ($res = $conn->query($statement)) {
+
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            
+            $amount = $row['count(*)'];
+            return $amount;
+        }
+    }
+    return "0";
+}
+
+function cms_getCountSites() {
+
+    global $conn;
+    $statement = "SELECT count(*) from pages";
+
+    if ($res = $conn->query($statement)) {
+
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            
+            $amount = $row['count(*)'];
+            return $amount;
+        }
+    }
+    return "0";
+}
+
 ?>

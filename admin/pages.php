@@ -74,30 +74,30 @@
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
-                                    <tr>
-                                        <td>Home</td>
-                                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                        <td>Dec 12, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>About</td>
-                                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                        <td>Dec 13, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Services</td>
-                                        <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                        <td>Dec 13, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact</td>
-                                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                        <td>Dec 14, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
+
+                                    <?php
+                                    $statement = "SELECT * FROM pages";
+
+                                    if ($res = $conn->query($statement)) {
+
+                                        if ($res->num_rows > 0) {
+
+                                            while ($row = $res->fetch_assoc()) {
+
+                                                $id = $row['ID'];
+                                                $name = $row['PageName'];
+                                                $created = $row['Timestamp'];
+
+                                                echo '<tr>';
+                                                echo '<td>' . $name . '</td>';
+                                                echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
+                                                echo '<td>' . $created . '</td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php?id='.$id.'">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id='.$id.'">View</a> <a class="btn btn-danger" href="#">Delete</a></td></td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
@@ -110,10 +110,6 @@
         <?php
         include './admin_footer.php';
         ?>
-
-        <script>
-            CKEDITOR.replace('editor1');
-        </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

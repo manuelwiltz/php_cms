@@ -1,14 +1,16 @@
+
 <div class="list-group">
     <a href="admin.php" class="list-group-item active main-color-bg">
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
     </a>
-    <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
-    <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
-    <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
+    <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge"><?php echo cms_getCountSites() ?></span></a>
+    <a href="posts.php" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge"><?php echo cms_getCountSites() ?></span></a>
+    <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo cms_getCountUsers() ?></span></a>
     <a href="settings.php" class="list-group-item"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings </a>
 </div>
 
-<!--
+<?php
+/*
 <div class="well">
     <h4>Disk Space Used</h4>
     <div class="progress">
@@ -23,4 +25,5 @@
         </div>
     </div>
 </div>
--->
+*/
+?>

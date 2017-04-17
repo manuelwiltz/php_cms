@@ -18,7 +18,7 @@
                 <li><a href="settings.php">Settings</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Welcome, Brad</a></li>
+                <li><a href="#">Welcome, Manuel</a></li>
                 <li><a href="login.php">Logout</a></li>
             </ul>
         </div>

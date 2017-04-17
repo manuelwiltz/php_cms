@@ -83,7 +83,7 @@
             });
 
             function receiveDataFromPHP(data, status) {
-                console.log(data);
+                location.reload();
             }
         </script>
 

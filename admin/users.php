@@ -52,7 +52,9 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Filter Users...">
+                                        <p class="bold">Search username: </p>
+                                        <input class="form-control" type="text" placeholder="Username to look for...">
+                                        <input id="searchUser-btn" type="submit" value="Search user" class="btn btn-default btn-green margin-top-sm">
                                     </div>
                                 </div>
                                 <br>
@@ -63,30 +65,30 @@
                                         <th>Joined</th>
                                         <th></th>
                                     </tr>
-                                    <tr>
-                                        <td>Jill Smith</td>
-                                        <td>jillsmith@gmail.com</td>
-                                        <td>Dec 12, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Eve Jackson</td>
-                                        <td>ejackson@yahoo.com</td>
-                                        <td>Dec 13, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stephanie Landon</td>
-                                        <td>landon@yahoo.com</td>
-                                        <td>Dec 14, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mike Johnson</td>
-                                        <td>mjohnson@gmail.com</td>
-                                        <td>Dec 15, 2016</td>
-                                        <td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                                    </tr>
+
+                                    <?php
+                                    $statement = "SELECT * FROM users";
+
+                                    if ($res = $conn->query($statement)) {
+
+                                        if ($res->num_rows > 0) {
+
+                                            while ($row = $res->fetch_assoc()) {
+
+                                                $name = $row['firstname'] . " " . $row['lastname'];
+                                                $email = $row['email'];
+                                                $joined = $row['create_date'];
+
+                                                echo '<tr>';
+                                                echo '<td>'.$name.'</td>';
+                                                echo '<td>'.$email.'</td>';
+                                                echo '<td>'.$joined.'</td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
@@ -96,9 +98,9 @@
             </div>
         </section>
 
-        <?php
-        include './admin_footer.php';
-        ?>
+<?php
+include './admin_footer.php';
+?>
 
         <script>
             CKEDITOR.replace('editor1');
