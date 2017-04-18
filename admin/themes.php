@@ -11,7 +11,7 @@ if (!isset($_SESSION['userid'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin | Settings</title>
+        <title>Admin | Themes</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
@@ -27,7 +27,7 @@ if (!isset($_SESSION['userid'])) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings<small> Change settings</small></h1>
+                        <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Themes<small> Manage your themes</small></h1>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['userid'])) {
             <div class="container">
                 <ol class="breadcrumb">
                     <li><a href="admin.php">Dashboard</a></li>
-                    <li class="active">Settings</li>
+                    <li class="active">Themes</li>
                 </ol>
             </div>
         </section>
@@ -53,15 +53,13 @@ if (!isset($_SESSION['userid'])) {
                     <div class="col-md-9">
                         <div class="panel panel-default">
                             <div class="panel-heading main-color-bg">
-                                <h3 class="panel-title">Settings</h3>
+                                <h3 class="panel-title">Themes</h3>
                             </div>
                             <div class="panel-body">
 
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
-                                        <p class="bold">Website title: </p>
-                                        <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
-                                        <input id="cms_setWebsiteTitle-btn" type="submit" value="Change title" class="btn btn-default btn-green margin-top-sm">
+                                        
                                     </div>
                                 </div>
 
@@ -80,18 +78,6 @@ if (!isset($_SESSION['userid'])) {
         <?php
         include './admin_footer.php';
         ?>
-
-        <script>
-            document.getElementById("cms_setWebsiteTitle-btn").addEventListener("click", function () {
-                var sendData = {};
-                sendData["cms_setWebsiteTitle"] = document.getElementById("cms_setWebsiteTitle-value").value;
-                $.post("functions.php", sendData, receiveDataFromPHP);
-            });
-
-            function receiveDataFromPHP(data, status) {
-                location.reload();
-            }
-        </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

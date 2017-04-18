@@ -35,7 +35,7 @@ if (isset($_SESSION['userid'])) {
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
 
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </nav>
 
@@ -43,7 +43,7 @@ if (isset($_SESSION['userid'])) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="text-center"> Admin Area <small>Account Login</small></h1>
+                        <h1 class="text-center"> Login <small>into the admin area</small></h1>
                     </div>
                 </div>
             </div>
@@ -85,18 +85,18 @@ if (isset($_SESSION['userid'])) {
                                     $_SESSION['userid'] = $row['id'];
                                     header("Location: admin.php");
                                 } else {
-                                    array_push($errors, "<p style='color: red; font-weight: bold;'>Incorrect username or password!</p>");
+                                    array_push($errors, "Incorrect username or password!");
                                 }
                             } else {
-                                array_push($errors, "<p style='color: red; font-weight: bold;'>Incorrect username or password!</p>");
+                                array_push($errors, "Incorrect username or password!");
                             }
                         } else {
-                            array_push($errors, "<p style='color: red; font-weight: bold;'>An error occured!</p>");
+                            array_push($errors, "An error occured!");
                         }
 
                         if (count($errors) > 0) {
                             foreach ($errors as $value) {
-                                echo '<h2 class="text-center" style="color: red;">' . $value . '</h2>';
+                                echo '<p class="text-center" style="color: red; font-weight: bold;">' . $value . '</p>';
                             }
                         }
                     }

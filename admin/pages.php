@@ -51,7 +51,6 @@ if (!isset($_SESSION['userid'])) {
                         ?>
                     </div>
                     <div class="col-md-9">
-                        <!-- Website Overview -->
                         <div class="panel panel-default">
                             <div class="panel-heading main-color-bg">
                                 <h3 class="panel-title">Pages</h3>
@@ -69,11 +68,16 @@ if (!isset($_SESSION['userid'])) {
                                 <hr class="medium">
 
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Filter Pages...">
+                                    <div class="col-md-12 padding-sm">
+                                        <p class="bold">Search Pages: </p>
+                                        <input id="cms_searchPages-value" class="form-control" type="text" placeholder="Filter Pages by name...">
+                                        <input id="cms_searchPages-btn" type="submit" value="Search page" class="btn btn-default btn-green margin-top-sm margin-bottom-sm">
+                                    </div>
+                                    <div id="search-output" class="col-md-12">
                                     </div>
                                 </div>
-                                <br>
+                                <hr class="medium">
+                                <p class="bold">All Pages: </p>
                                 <table class="table table-striped table-hover">
                                     <tr>
                                         <th>Title</th>
@@ -124,6 +128,18 @@ if (!isset($_SESSION['userid'])) {
             function receiveDataFromPHP(data, status) {
                 location.reload();
             }
+
+
+            document.getElementById("cms_searchPages-btn").addEventListener("click", function () {
+                var sendData = {};
+                sendData["cms_searchPages"] = document.getElementById("cms_searchPages-value").value;
+                $.post("functions.php", sendData, receivePagesFromPHP);
+            });
+
+            function receivePagesFromPHP(data, status) {
+                document.getElementById("search-output").innerHTML = data;
+            }
+
         </script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

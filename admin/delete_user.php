@@ -7,7 +7,7 @@ if (!isset($_SESSION['userid'])) {
 ?>
 <?php
 
-include '../DB_connection.php';
+include './DB_connection.php';
 
 $toDelete = htmlspecialchars(stripcslashes(trim($_GET['id'])));
 

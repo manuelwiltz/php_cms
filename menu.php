@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <?php
-                include './DB_connection.php';
+                include './admin/DB_connection.php';
 
                 $statement = "SELECT * FROM pages;";
 

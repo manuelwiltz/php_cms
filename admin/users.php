@@ -222,7 +222,6 @@ include './admin_footer.php';
             });
 
             function receiveDataFromPHP(data, status) {
-                console.log(data);
                 document.getElementById("search-output").innerHTML = data;
             }
         </script>

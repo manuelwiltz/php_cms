@@ -4,8 +4,10 @@
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
     </a>
     <a href="pages.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge"><?php echo cms_getCountSites() ?></span></a>
+    <a href="themes.php" class="list-group-item"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> Themes </a>
     <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge"><?php echo cms_getCountUsers() ?></span></a>
-    <a href="settings.php" class="list-group-item"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings </a>
+    <a href="profile.php" class="list-group-item"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Profile </a>
+    <a href="settings.php" class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Settings </a>
 </div>
 
 <?php

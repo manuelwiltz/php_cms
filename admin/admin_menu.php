@@ -3,7 +3,7 @@ if (!isset($_SESSION['userid'])) {
     header("Location: login.php");
 }
 
-include '../DB_connection.php';
+include './DB_connection.php';
 
 $statement = "SELECT username FROM users where id = " . $_SESSION['userid'];
 
@@ -31,14 +31,16 @@ if ($res = $conn->query($statement)) {
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="admin.php">Dashboard</a></li>
-                <li><a href="pages.php">Pages</a></li>
-                <li><a href="users.php">Users</a></li>
-                <li><a href="settings.php">Settings</a></li>
+                <li><a href="admin.php"><span class="glyphicon glyphicon-cog"></span> Dashboard</a></li>
+                <li><a href="pages.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages</a></li>
+                <li><a href="themes.php"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span> Themes</a></li>
+                <li><a href="users.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
+                <li><a href="profile.php"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Profile</a></li>
+                <li><a href="settings.php"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Settings</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Welcome, <?php echo $username ?></a></li>
-                <li><a href="login.php">Logout</a></li>
+                <li><a href="profile.php"><span class="glyphicon glyphicon-user"></span> Welcome, <?php echo $username ?></a></li>
+                <li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>
