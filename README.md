@@ -31,3 +31,6 @@ Create a database with the name **cms_pages**
 
 ## users
 ![users](https://cloud.githubusercontent.com/assets/23216069/25011893/28164428-206f-11e7-9ffb-3797c0af562b.PNG)
+
+## site_info
+![image](https://cloud.githubusercontent.com/assets/23216069/25151335/816c1984-2485-11e7-8740-266885d2f79e.png)
