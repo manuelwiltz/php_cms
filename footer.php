@@ -1,6 +1,6 @@
 <div id="footer">
-    <a href="admin/admin.php">Admin - Bereich</a>
-    <p>Copyright 2017 Manuel Wiltz</p>
+    <p><a href="admin/admin.php">Admin - Area</a></p>
+    <p>Copyright <?php echo cms_getWebsiteTitle() . " &copy; " . date("Y") ?></p>
 </div>
 
 </div>

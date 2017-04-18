@@ -1,6 +1,10 @@
 <?php
 
-include './DB_connection.php';
+if (is_file('./DB_connection.php')) {
+    include './DB_connection.php';
+} else {
+    include 'admin/DB_connection.php';
+}
 
 if (isset($_POST['cms_setWebsiteTitle'])) {
     cms_setWebsiteTitle($_POST['cms_setWebsiteTitle']);
@@ -174,6 +178,12 @@ function cms_getUsers($username) {
     return "<p>No user found.</p>";
 }
 
+/**
+ * Returns the Pages where the PageName matches the parameter 
+ * @global type $conn
+ * @param type $pagename
+ * @return string
+ */
 function cms_getPages($pagename) {
     global $conn;
     $pagename = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($pagename))));
@@ -202,6 +212,66 @@ function cms_getPages($pagename) {
         }
     }
     return "<p>No pages found.</p>";
+}
+
+/**
+ * Returns the PageName of the SubPage
+ * @global type $conn
+ * @param type $id
+ * @return string
+ */
+function cms_getSubPageTitle($id) {
+    global $conn;
+    $id = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($id))));
+    $statement = "SELECT * FROM pages where id=" . $id;
+
+    if ($res = $conn->query($statement)) {
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            return $row['PageName'];
+        }
+    }
+    return "<p>Title</p>";
+}
+
+/**
+ * Returns the Descriptsion of the SubPage
+ * @global type $conn
+ * @param type $id
+ * @return string
+ */
+function cms_getWebsiteDescription($id) {
+    global $conn;
+    $id = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($id))));
+    $statement = "SELECT * FROM pages where id=" . $id;
+
+    if ($res = $conn->query($statement)) {
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            return $row['MetaDescription'];
+        }
+    }
+    return "<p>Meta Description</p>";
+}
+
+/**
+ * Returns the Keywords of the SubPage
+ * @global type $conn
+ * @param type $id
+ * @return string
+ */
+function cms_getWebsiteKeywords($id) {
+    global $conn;
+    $id = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($id))));
+    $statement = "SELECT * FROM pages where id=" . $id;
+
+    if ($res = $conn->query($statement)) {
+        if ($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            return $row['Keywords'];
+        }
+    }
+    return "<p>Keywords</p>";
 }
 
 ?>

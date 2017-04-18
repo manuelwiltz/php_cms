@@ -100,7 +100,7 @@ if (!isset($_SESSION['userid'])) {
                                                 echo '<td>' . $username . '</td>';
                                                 echo '<td>' . $email . '</td>';
                                                 echo '<td>' . $joined . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php">Edit</a> <a class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
+                                                echo '<td><a class="btn btn-default" href="profile.php?id=' . $id . '">Edit</a> <a class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
                                                 echo '</tr>';
                                             }
                                         }
@@ -225,9 +225,6 @@ include './admin_footer.php';
                 document.getElementById("search-output").innerHTML = data;
             }
         </script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     </body>
 </html>
