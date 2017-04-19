@@ -210,9 +210,9 @@ if (!isset($_SESSION['userid'])) {
             </div>
         </section>
 
-<?php
-include './admin_footer.php';
-?>
+        <?php
+        include './admin_footer.php';
+        ?>
 
         <script>
             document.getElementById("cms_searchUser-btn").addEventListener("click", function () {
