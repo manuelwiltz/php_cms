@@ -14,9 +14,7 @@ session_start();
 
         <?php
         include './admin/functions.php';
-        
-        cms_incrementViews();
-        
+                
         if (isset($_GET['id'])) {
             $title = cms_getSubPageTitle($_GET['id']);
             $description = cms_getWebsiteDescription($_GET['id']);
@@ -29,9 +27,11 @@ session_start();
             $autohor = "No title available.";
             $keywords = "No keywords available.";
         }
+        
+        cms_addNewView($title);
         ?>
 
-        <title><?php echo ''; ?></title>
+        <title><?php echo $title; ?></title>
         <meta name="description" content="<?php echo $description; ?>">
         <meta name="author" content="<?php echo $autohor; ?>">
         <meta name="keywords" content="<?php echo $keywords; ?>">

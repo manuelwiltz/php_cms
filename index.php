@@ -42,9 +42,11 @@ session_start();
                 $keywords = "No keywords available.";
             }
         }
+        
+        cms_addNewView($title);
         ?>
 
-        <title><?php echo ''; ?></title>
+        <title><?php echo $title; ?></title>
         <meta name="description" content="<?php echo $description; ?>">
         <meta name="author" content="<?php echo $autohor; ?>">
         <meta name="keywords" content="<?php echo $keywords; ?>">
