@@ -289,4 +289,21 @@ function cms_incrementViews() {
     return false;
 }
 
+/**
+ * Creates a new view and inserts the details into the database.
+ * @global type $conn
+ * @param type $id
+ * @return string
+ */
+function cms_addNewView($pagename) {
+    global $conn;
+    $pagename = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($pagename))));
+    $statement = "INSERT INTO views (id, date, ip, pagename, browser, os) VALUES (NULL, CURRENT_TIMESTAMP, '" . $_SERVER['REMOTE_ADDR'] . "', '" . $pagename . "', 'Firefox', 'Windows')";
+
+    if ($res = $conn->query($statement)) {
+        
+    }
+    return "<p>Keywords</p>";
+}
+
 ?>
