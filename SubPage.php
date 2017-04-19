@@ -15,6 +15,8 @@ session_start();
         <?php
         include './admin/functions.php';
         
+        cms_incrementViews();
+        
         if (isset($_GET['id'])) {
             $title = cms_getSubPageTitle($_GET['id']);
             $description = cms_getWebsiteDescription($_GET['id']);

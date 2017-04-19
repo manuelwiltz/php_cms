@@ -77,9 +77,6 @@ if (!isset($_SESSION['userid'])) {
                                     }
                                 }
 
-
-
-
                                 $id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
 
                                 $statement = "SELECT * FROM pages WHERE pages.id = " . $id;
@@ -140,5 +137,9 @@ if (!isset($_SESSION['userid'])) {
         <?php
         include './admin_footer.php';
         ?>
+
+        <script>
+            CKEDITOR.replace('editor1');
+        </script>
     </body>
 </html>

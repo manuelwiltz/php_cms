@@ -274,4 +274,19 @@ function cms_getWebsiteKeywords($id) {
     return "<p>Keywords</p>";
 }
 
+/**
+ * Increments the amount of views.
+ * @global type $conn
+ * @return boolean
+ */
+function cms_incrementViews() {
+    global $conn;
+    $statement = "UPDATE site_info SET views = views + " . 1 . ";";
+
+    if ($res = $conn->query($statement)) {
+        return true;
+    }
+    return false;
+}
+
 ?>
