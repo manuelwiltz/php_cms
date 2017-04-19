@@ -33,7 +33,8 @@ Create a database with the name **cms_pages**
 ![users](https://cloud.githubusercontent.com/assets/23216069/25011893/28164428-206f-11e7-9ffb-3797c0af562b.PNG)
 
 ## site_info
-![image](https://cloud.githubusercontent.com/assets/23216069/25151335/816c1984-2485-11e7-8740-266885d2f79e.png)
+![grafik](https://cloud.githubusercontent.com/assets/23216069/25172243/a9947814-24f0-11e7-87dd-f053e965c329.png)
+
 
 ## views
 ![grafik](https://cloud.githubusercontent.com/assets/23216069/25172159/737bd380-24f0-11e7-8704-5b672d8a4f36.png)
