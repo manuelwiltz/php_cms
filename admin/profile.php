@@ -81,9 +81,17 @@ if (!isset($_SESSION['userid'])) {
                                 ?>
 
                                 <div class="row">
-                                    <div class="col-md-12 padding-sm">
+                                    <div class="col-md-12 padding-md">
                                         <h3>Hello, <?php echo $username; ?></h3>
                                         <p class="small" style="color: #777">You joined:  <?php echo $joined; ?></p>
+                                    </div>
+                                </div>
+
+                                <hr class="medium">
+
+                                <div class="row padding-left-right-md">
+                                    <div class="alert alert-info">
+                                        <strong>Info!</strong> If you change your username or password you are going to be forwarded to the login page.
                                     </div>
                                 </div>
 
@@ -93,42 +101,35 @@ if (!isset($_SESSION['userid'])) {
                                     <h4 class="bold">Change your profile data:</h4>
 
                                     <?php
-                                    if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email'])) {
+                                    if (isset($_POST['updateBtn']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email'])) {
 
                                         $errors = [];
 
                                         $firstname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['firstname']))));
                                         $lastname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['lastname']))));
-                                        $username = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['username']))));
+                                        $usernameNew = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['username']))));
                                         $email = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['email']))));
 
-                                        /*
-                                          $statement = "SELECT * FROM users where username = '" . $username . "';";
-                                          if ($result = $conn->query($statement)) {
-                                          if ($result->num_rows > 0) {
-                                          array_push($errors, "Username is allready taken!");
-                                          }
-                                          }
+                                        if (count($errors) == 0) {
 
-                                          if (!($password1 === $password2)) {
-                                          array_push($errors, 'Email or passwords do not match!');
-                                          } else if ((strpos($email, "@") == FALSE) || (strpos($email, ".") == FALSE)) {
-                                          array_push($errors, 'Email or passwords do not match!');
-                                          }
-
-                                          if (count($errors) == 0) {
-                                          $statement = "INSERT INTO users (id, firstname, lastname, username, email, password, create_date) VALUES (NULL, '" . $firstname . "', '" . $lastname . "', '" . $username . "', '" . $email . "', '" . $password1 . "', CURRENT_TIMESTAMP);";
-
-                                          if ($result = $conn->query($statement)) {
-                                          echo '<script>window.location.replace("users.php");</script>';
-                                          }
-                                          } else {
-                                          echo '<div class="row padding-md">';
-                                          foreach ($errors as $value) {
-                                          echo '<p class="bold" style="color: red;">' . $value . '</p>';
-                                          }
-                                          echo '</div>';
-                                          } */
+                                            if ($username !== $usernameNew) {
+                                                $statement = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', username = '$usernameNew', email = '$email' WHERE username='" . $username . "'";
+                                                if ($result = $conn->query($statement)) {
+                                                    echo '<script>location.replace("login.php");</script>';
+                                                }
+                                            } else {
+                                                $statement = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email' WHERE username='" . $username . "'";
+                                                if ($result = $conn->query($statement)) {
+                                                    echo '<p class="bold" style="color: #2ecc71;">SUCCESS - changes successfully applied</p>';
+                                                }
+                                            }
+                                        } else {
+                                            echo '<div class="row padding-md">';
+                                            foreach ($errors as $value) {
+                                                echo '<p class="bold" style="color: red;">' . $value . '</p>';
+                                            }
+                                            echo '</div>';
+                                        }
                                     }
                                     ?>
 
@@ -149,7 +150,7 @@ if (!isset($_SESSION['userid'])) {
                                             <label for="email">Email:</label>
                                             <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
                                         </div>
-                                        <button type="submit" class="btn btn-default btn-green">Update Profile</button>
+                                        <button type="submit" name="updateBtn" class="btn btn-default btn-green">Update Profile</button>
                                     </form>
                                 </div>
 
@@ -159,9 +160,7 @@ if (!isset($_SESSION['userid'])) {
                                     <h4 class="bold">Change your password:</h4>
 
                                     <?php
-                                    // TODO: validate new password
-
-                                    if (isset($_POST['passwordOld']) && isset($_POST['passwordNew1']) && isset($_POST['passwordNew2'])) {
+                                    if (isset($_POST['changePwBtn']) && isset($_POST['passwordOld']) && isset($_POST['passwordNew1']) && isset($_POST['passwordNew2'])) {
 
                                         $errors = [];
 
@@ -173,10 +172,7 @@ if (!isset($_SESSION['userid'])) {
                                         if ($result = $conn->query($statement)) {
                                             if ($result->num_rows == 1) {
 
-                                                if (($passwordNew1 === $passwordNew2) && ($passwordOld === $password)) {
-                                                    echo '<script>window.location.replace("profile.php");</script>';
-                                                    echo '<script>window.onload = function() { document.getElementById("passwordChange").innerHTML = "<p class="success-font-color bold">SUCCESS - password changed.</p>"; }</script>';
-                                                } else {
+                                                if (!(($passwordNew1 === $passwordNew2) && ($passwordOld === $password))) {
                                                     array_push($errors, 'New passwords or old do not match! Please cheack your input!');
                                                 }
                                             }
@@ -186,9 +182,7 @@ if (!isset($_SESSION['userid'])) {
                                             $statement = "UPDATE users SET password = '" . $passwordNew1 . "' WHERE username = '" . $username . "';";
 
                                             if ($result = $conn->query($statement)) {
-                                                echo '<script>window.location.replace("profile.php");</script>';
-                                                echo '<script>alert("SUCCESS");</script>';
-                                                #echo '<script>window.onload = function() { document.getElementById("passwordChange").innerHTML = "<p class="success-font-color bold">SUCCESS - password changed.</p>"; }</script>';
+                                                header("Location: login.php");
                                             }
                                         } else {
                                             echo '<div class="row padding-md">';
@@ -220,7 +214,7 @@ if (!isset($_SESSION['userid'])) {
                                             <label for="pwd">Repeat new password:</label>
                                             <input type="password" class="form-control" name="passwordNew2" placeholder="Repeat new password">
                                         </div>
-                                        <button type="submit" class="btn btn-default btn-green">Change Password</button>
+                                        <button type="submit" name="changePwBtn" class="btn btn-default btn-green">Change Password</button>
                                     </form>
                                 </div>
 

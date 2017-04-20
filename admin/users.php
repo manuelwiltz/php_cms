@@ -84,9 +84,7 @@ if (!isset($_SESSION['userid'])) {
                                     $statement = "SELECT * FROM users ORDER BY create_date DESC";
 
                                     if ($res = $conn->query($statement)) {
-
                                         if ($res->num_rows > 0) {
-
                                             while ($row = $res->fetch_assoc()) {
 
                                                 $id = $row['id'];

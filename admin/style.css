@@ -22,6 +22,11 @@ body{
     padding: 12px;
 }
 
+.padding-left-right-md {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .btn-green {
     background-color: #2ecc71;
     border-color: #27ae60;
