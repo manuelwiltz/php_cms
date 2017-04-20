@@ -11,7 +11,7 @@ if (!isset($_SESSION['userid'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin | Themes</title>
+        <title>Admin | Profile</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
     </head>
@@ -93,7 +93,43 @@ if (!isset($_SESSION['userid'])) {
                                     <h4 class="bold">Change your profile data:</h4>
 
                                     <?php
-                                    // TODO: validate input
+                                    if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email'])) {
+
+                                        $errors = [];
+
+                                        $firstname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['firstname']))));
+                                        $lastname = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['lastname']))));
+                                        $username = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['username']))));
+                                        $email = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['email']))));
+
+                                        /*
+                                          $statement = "SELECT * FROM users where username = '" . $username . "';";
+                                          if ($result = $conn->query($statement)) {
+                                          if ($result->num_rows > 0) {
+                                          array_push($errors, "Username is allready taken!");
+                                          }
+                                          }
+
+                                          if (!($password1 === $password2)) {
+                                          array_push($errors, 'Email or passwords do not match!');
+                                          } else if ((strpos($email, "@") == FALSE) || (strpos($email, ".") == FALSE)) {
+                                          array_push($errors, 'Email or passwords do not match!');
+                                          }
+
+                                          if (count($errors) == 0) {
+                                          $statement = "INSERT INTO users (id, firstname, lastname, username, email, password, create_date) VALUES (NULL, '" . $firstname . "', '" . $lastname . "', '" . $username . "', '" . $email . "', '" . $password1 . "', CURRENT_TIMESTAMP);";
+
+                                          if ($result = $conn->query($statement)) {
+                                          echo '<script>window.location.replace("users.php");</script>';
+                                          }
+                                          } else {
+                                          echo '<div class="row padding-md">';
+                                          foreach ($errors as $value) {
+                                          echo '<p class="bold" style="color: red;">' . $value . '</p>';
+                                          }
+                                          echo '</div>';
+                                          } */
+                                    }
                                     ?>
 
                                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -138,7 +174,8 @@ if (!isset($_SESSION['userid'])) {
                                             if ($result->num_rows == 1) {
 
                                                 if (($passwordNew1 === $passwordNew2) && ($passwordOld === $password)) {
-                                                    
+                                                    echo '<script>window.location.replace("profile.php");</script>';
+                                                    echo '<script>window.onload = function() { document.getElementById("passwordChange").innerHTML = "<p class="success-font-color bold">SUCCESS - password changed.</p>"; }</script>';
                                                 } else {
                                                     array_push($errors, 'New passwords or old do not match! Please cheack your input!');
                                                 }
@@ -150,16 +187,25 @@ if (!isset($_SESSION['userid'])) {
 
                                             if ($result = $conn->query($statement)) {
                                                 echo '<script>window.location.replace("profile.php");</script>';
+                                                echo '<script>alert("SUCCESS");</script>';
+                                                #echo '<script>window.onload = function() { document.getElementById("passwordChange").innerHTML = "<p class="success-font-color bold">SUCCESS - password changed.</p>"; }</script>';
                                             }
                                         } else {
                                             echo '<div class="row padding-md">';
                                             foreach ($errors as $value) {
                                                 echo '<p class="bold" style="color: red;">' . $value . '</p>';
+                                                unset($_POST['passwordOld']);
+                                                unset($_POST['passwordNew1']);
+                                                unset($_POST['passwordNew2']);
                                             }
                                             echo '</div>';
                                         }
                                     }
                                     ?>
+
+                                    <div class="row" id="passwordChange">
+
+                                    </div>
 
                                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
                                         <div class="form-group">
