@@ -14,7 +14,7 @@ session_start();
 
         <?php
         include './admin/functions.php';
-                
+        
         if (isset($_GET['id'])) {
             $title = cms_getSubPageTitle($_GET['id']);
             $description = cms_getWebsiteDescription($_GET['id']);

@@ -59,7 +59,7 @@ if (!isset($_SESSION['userid'])) {
 
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
-                                        
+                                        <p>Themes are comming soon!</p>
                                     </div>
                                 </div>
 

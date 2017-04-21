@@ -182,7 +182,7 @@ if (!isset($_SESSION['userid'])) {
                                             $statement = "UPDATE users SET password = '" . $passwordNew1 . "' WHERE username = '" . $username . "';";
 
                                             if ($result = $conn->query($statement)) {
-                                                header("Location: login.php");
+                                                echo '<script>location.replace("login.php");</script>';
                                             }
                                         } else {
                                             echo '<div class="row padding-md">';
