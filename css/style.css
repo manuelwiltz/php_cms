@@ -3,6 +3,11 @@ body {
     padding: 0;
 }
 
+.search {
+    max-width: 150px;
+    margin: 0 auto;
+}
+
 #content {
     height: auto;
 }
@@ -115,22 +120,8 @@ body {
     }
 }
 
-
-/* CSS used for positioning the footers at the bottom of the page. */
-
-
-/* You can remove this. */
-
 html {
     height: 100% !important;
-}
-
-body {
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
-    -webkit-flex-direction: column;
-    height: 100%;
 }
 
 .content {

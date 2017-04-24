@@ -9,6 +9,7 @@ session_start();
         <link href="css/Menu.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -28,12 +29,11 @@ session_start();
                     $pageContent = $row['PageContent'];
                     break;
                 }
-                
+
                 $title = cms_getSubPageTitle($page_id);
                 $description = cms_getWebsiteDescription($page_id);
                 $autohor = cms_getWebsiteTitle();
                 $keywords = cms_getWebsiteKeywords($page_id);
-                
             } else {
                 $pageContent = '<p>Diese Seite beinhaltet keinen Content</p>';
                 $title = "Title";
@@ -42,7 +42,7 @@ session_start();
                 $keywords = "No keywords available.";
             }
         }
-        
+
         cms_addNewView($title);
         ?>
 
@@ -57,6 +57,11 @@ session_start();
     <body>
 
         <div class="container">
+
+            <div class="jumbotron" style="border-radius: 0; margin-bottom: 0;">
+                <h2 class="text-center"><?php echo cms_getWebsiteTitle(); ?></h2>
+            </div>
+
             <?php
             include './menu.php';
             ?>

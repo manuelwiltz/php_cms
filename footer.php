@@ -3,38 +3,43 @@
 <footer id="myFooter">
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 myCols">
-                <h5>Get started</h5>
+            <div class="col-sm-4 col-xs-12 myCols">
+                <h5>Contact us</h5>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Sign up</a></li>
-                    <li><a href="#">Downloads</a></li>
+                    <li><p>Phone: <a href="#">0660 0011 2233</a></p></li>
+                    <li><p>EMail: <a href="#">this@contact.com</a></p></li>
+                    <li></li>
                 </ul>
             </div>
-            <div class="col-sm-3 myCols">
-                <h5>About us</h5>
-                <ul>
-                    <li><a href="#">Company Information</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Reviews</a></li>
-                </ul>
+            <div class="col-sm-4 col-xs-12 myCols">
+                <h5>Links</h5>
+                <?php
+                $statement = "SELECT * FROM pages;";
+
+                if ($_res = $conn->query($statement)) {
+                    if ($_res->num_rows > 0) {
+                        echo '<p> | ';
+                        while ($row = $_res->fetch_assoc()) {
+                            $page_id = $row['ID'];
+                            $name = $row['PageName'];
+                            echo ' <a href="Subpage.php?id=' . $page_id . '">' . $name . '</a> |';
+                        }
+                        echo '</p>';
+                    }
+                }
+                ?>
+                <p></p>
             </div>
-            <div class="col-sm-3 myCols">
-                <h5>Support</h5>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Help desk</a></li>
-                    <li><a href="#">Forums</a></li>
-                </ul>
+            <div class="col-sm-4 col-xs-12 myCols">
+                <h5>Login</h5>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group text-center">
+                        <input type="text" class="form-control search" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
             </div>
-            <div class="col-sm-3 myCols">
-                <h5>Legal</h5>
-                <ul>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
+            <p class="text-center"><?php echo cms_getWebsiteDescription($page_id); ?></p>
         </div>
     </div>
     <div class="social-networks">
