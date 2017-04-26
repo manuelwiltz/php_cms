@@ -19,7 +19,7 @@
             </div>
             <div class="col-sm-4 col-xs-12 myCols">
                 <h5>Login</h5>
-                <form class="navbar-form navbar-right">
+                <form class="navbar-form">
                     <div class="form-group text-center">
                         <input type="text" class="form-control search" placeholder="Search">
                     </div>

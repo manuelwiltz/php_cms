@@ -275,21 +275,6 @@ function cms_getWebsiteKeywords($id) {
 }
 
 /**
- * Increments the amount of views.
- * @global type $conn
- * @return boolean
- */
-function cms_incrementViews() {
-    global $conn;
-    $statement = "UPDATE site_info SET views = views + " . 1 . ";";
-
-    if ($res = $conn->query($statement)) {
-        return true;
-    }
-    return false;
-}
-
-/**
  * Creates a new view and inserts the details into the database.
  * @global type $conn
  * @param type $id
@@ -439,6 +424,11 @@ function cms_getWebsiteLinks() {
     return $output;
 }
 
+/**
+ * Returns the social media icons as links.
+ * @global type $conn
+ * @return string
+ */
 function cms_getSocialMediaIcons() {
     global $conn;
 
