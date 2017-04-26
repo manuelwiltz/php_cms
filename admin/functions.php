@@ -307,6 +307,10 @@ function cms_addNewView($pagename) {
     return false;
 }
 
+/**
+ * Returns the OS which the client is using.
+ * @return string
+ */
 function getOS() {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -348,6 +352,10 @@ function getOS() {
     return $os_platform;
 }
 
+/**
+ * Returns the browser which the client is using.
+ * @return string
+ */
 function getBrowser() {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -374,6 +382,98 @@ function getBrowser() {
     }
 
     return $browser;
+}
+
+/**
+ * Returns the contact information of the site.
+ * @global type $conn
+ * @return string
+ */
+function cms_getContactInfo() {
+    global $conn;
+
+
+    $statement = "SELECT * FROM site_info;";
+    $output = "";
+
+    if ($res = $conn->query($statement)) {
+        if ($res->num_rows == 1) {
+            $output .= '<ul>';
+            $row = $res->fetch_assoc();
+
+            if (strlen($row['site_phonenumber']) > 0) {
+                $output .= '<li><p>Phone: ' . $row['site_phonenumber'] . '</p></li>';
+            }
+
+            if (strlen($row['site_email']) > 0) {
+                $output .= '<li><p>EMail: <a href="' . $row['site_email'] . '">' . $row['site_email'] . '</a></p></li>';
+            }
+            $output .= '</ul>';
+        }
+    }
+    return $output;
+}
+
+/**
+ * Returns all links of the website.
+ * @global type $conn
+ * @return string
+ */
+function cms_getWebsiteLinks() {
+    global $conn;
+
+    $statement = "SELECT * FROM pages;";
+    $output = "";
+
+    if ($_res = $conn->query($statement)) {
+        if ($_res->num_rows > 0) {
+            $output .= '<p> | ';
+            while ($row = $_res->fetch_assoc()) {
+                $page_id = $row['ID'];
+                $name = $row['PageName'];
+                $output .= ' <a href="Subpage.php?id=' . $page_id . '">' . $name . '</a> |';
+            }
+            $output .= '</p>';
+        }
+    }
+    return $output;
+}
+
+function cms_getSocialMediaIcons() {
+    global $conn;
+
+    $output = "";
+
+    $statement = "SELECT * FROM site_info;";
+    $row = "";
+
+    if ($res = $conn->query($statement)) {
+        if ($res->num_rows == 1) {
+            $row = $res->fetch_assoc();
+
+            if (strlen($row['link_facebook']) > 0) {
+                $output .= '<a href="' . $row['link_facebook'] . '" class="facebook"><i class="fa fa-facebook-official"></i></a>';
+            }
+
+            if (strlen($row['link_twitter']) > 0) {
+                $output .= '<a href="' . $row['link_twitter'] . '" class="twitter"><i class="fa fa-twitter"></i></a>';
+            }
+
+            if (strlen($row['link_github']) > 0) {
+                $output .= '<a href="' . $row['link_github'] . '" class="github"><i class="fa fa-github"></i></a>';
+            }
+
+            if (strlen($row['link_codepen']) > 0) {
+                $output .= '<a href="' . $row['link_codepen'] . '" class="codepen"><i class="fa fa-codepen"></i></a>';
+            }
+
+            if (strlen($row['link_googleplus']) > 0) {
+                $output .= '<a href="' . $row['link_facebook'] . '" class="google"><i class="fa fa-google-plus"></i></a>';
+            }
+        }
+    }
+
+    return $output;
 }
 
 ?>
