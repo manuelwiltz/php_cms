@@ -3,6 +3,10 @@ session_start();
 if (!isset($_SESSION['login'])) {
     echo '<script>window.location.replace("login.php");</script>';
 }
+$_db_host = "localhost";
+$_db_datenbank = "cms_pages";
+$_db_username = "root";
+$_db_passwort = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +47,7 @@ if (!isset($_SESSION['login'])) {
                         ($_POST['password1'] == $_POST['password2'])
                 ) {
 
-                    $conn = new mysqli("localhost", "root", "");
+                    $conn = new mysqli($_db_host, $_db_username, $_db_passwort);
 
                     if ($conn->connect_error) {
                         echo $conn->connect_error;
@@ -52,7 +56,7 @@ if (!isset($_SESSION['login'])) {
                         $statement = "CREATE DATABASE $db_name";
                         if ($conn->query($statement)) {
 
-                            $conn = new mysqli("localhost", "root", "", "$db_name");
+                            $conn = new mysqli($_db_host, $_db_username, $_db_passwort, "$db_name");
 
                             if (!$conn->connect_error) {
 
@@ -129,12 +133,13 @@ if (!isset($_SESSION['login'])) {
                                         $errorCount++;
                                     }
                                 }
-                                
-                                if ($errorCount ==  0) {
+
+                                if ($errorCount == 0) {
                                     unset($_SESSION['login']);
                                     echo '<script>window.location.replace("login.php");</script>';
+                                } else {
+                                    echo '<p>Sorry, something went wrong!</p>';
                                 }
-                                
                             } else {
                                 echo '<p>Es ist ein Fehler aufgetreten</p>';
                             }
