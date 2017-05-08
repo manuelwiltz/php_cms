@@ -203,7 +203,7 @@ function cms_getPages($pagename) {
                 $output .= '<td>' . $name . '</td>';
                 $output .= '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
                 $output .= '<td>' . $created . '</td>';
-                $output .= '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
+                $output .= '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../index.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
                 $output .= '</tr>';
             }
 
@@ -391,7 +391,7 @@ function cms_getContactInfo() {
             }
 
             if (strlen($row['site_email']) > 0) {
-                $output .= '<li><p>EMail: <a href="' . $row['site_email'] . '">' . $row['site_email'] . '</a></p></li>';
+                $output .= '<li><p>EMail: <a href="mailto:' . $row['site_email'] . '">' . $row['site_email'] . '</a></p></li>';
             }
             $output .= '</ul>';
         }
@@ -416,7 +416,7 @@ function cms_getWebsiteLinks() {
             while ($row = $_res->fetch_assoc()) {
                 $page_id = $row['ID'];
                 $name = $row['PageName'];
-                $output .= ' <a href="Subpage.php?id=' . $page_id . '">' . $name . '</a> |';
+                $output .= ' <a href="index.php?id=' . $page_id . '">' . $name . '</a> |';
             }
             $output .= '</p>';
         }

@@ -105,7 +105,7 @@ if (!isset($_SESSION['userid'])) {
                                                 echo '<td>' . $name . '</td>';
                                                 echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
                                                 echo '<td>' . $created . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../SubPage.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
+                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../index.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
                                                 echo '</tr>';
                                             }
                                         }

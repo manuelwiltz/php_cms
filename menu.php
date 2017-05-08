@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" id="main-left" href="index.php"> <?php echo cms_getWebsiteTitle();?></a>
+            <a class="navbar-brand" id="main-left" href="index.php"> <?php echo cms_getWebsiteTitle(); ?></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -19,7 +19,7 @@
                         while ($row = $_res->fetch_assoc()) {
                             $page_id = $row['ID'];
                             $name = $row['PageName'];
-                            echo "<li><a href='SubPage.php?id=" . $page_id . "'>" . $name . "</a></li>";
+                            echo "<li><a href='index.php?id=" . $page_id . "'>" . $name . "</a></li>";
                         }
                     } else {
                         echo '<li>Keine Menüpunkte</li>';

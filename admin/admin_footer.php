@@ -11,11 +11,11 @@
                 $name = $row['PageName'];
                 $pageContent = $row['PageContent'];
 
-                echo '<p><span class="glyphicon glyphicon-log-out"></span> <a href="../SubPage.php?id=' . $page_id . '">Back to Homepage</a></p>';
+                echo '<p><span class="glyphicon glyphicon-log-out"></span> <a href="../index.php?id=' . $page_id . '">Back to Homepage</a></p>';
                 break;
             }
         } else {
-            echo '<p><span class="glyphicon glyphicon-log-out"></span> <a href="../SubPage.php">Back to website</a></p>';
+            echo '<p><span class="glyphicon glyphicon-log-out"></span> <a href="../index.php">Back to website</a></p>';
         }
     }
     ?>

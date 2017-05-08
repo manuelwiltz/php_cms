@@ -89,10 +89,8 @@ if (!isset($_SESSION['userid'])) {
 
                                 <hr class="medium">
 
-                                <div class="row padding-left-right-md">
-                                    <div class="alert alert-info">
-                                        <strong>Info!</strong> If you change your username or password you are going to be forwarded to the login page.
-                                    </div>
+                                <div class="alert alert-info">
+                                    <strong>Info!</strong> If you change your username or password you are going to be forwarded to the login page.
                                 </div>
 
                                 <hr class="medium">

@@ -20,26 +20,48 @@ session_start();
         <?php
         $statement = "SELECT * FROM pages;";
 
-        if ($_res = $conn->query($statement)) {
-            if ($_res->num_rows > 0) {
-                while ($row = $_res->fetch_assoc()) {
+        if (isset($_GET['id'])) {
+            $title = cms_getSubPageTitle($_GET['id']);
+            $description = cms_getWebsiteDescription($_GET['id']);
+            $autohor = cms_getWebsiteTitle();
+            $keywords = cms_getWebsiteKeywords($_GET['id']);
 
-                    $page_id = $row['ID'];
-                    $name = $row['PageName'];
-                    $pageContent = $row['PageContent'];
-                    break;
+            $statement = "SELECT * FROM pages where id = " . $_GET['id'] . ";";
+
+            if ($_res = $conn->query($statement)) {
+                if ($_res->num_rows > 0) {
+                    while ($row = $_res->fetch_assoc()) {
+                        $page_id = $row['ID'];
+                        $name = $row['PageName'];
+                        $pageContent = $row['PageContent'];
+                    }
+
+                } else {
+                    $pageContent = '<p>Diese Seite beinhaltet keinen Content</p>';
                 }
+            }
+        } else {
+            if ($_res = $conn->query($statement)) {
+                if ($_res->num_rows > 0) {
+                    while ($row = $_res->fetch_assoc()) {
 
-                $title = cms_getSubPageTitle($page_id);
-                $description = cms_getWebsiteDescription($page_id);
-                $autohor = cms_getWebsiteTitle();
-                $keywords = cms_getWebsiteKeywords($page_id);
-            } else {
-                $pageContent = '<p>Diese Seite beinhaltet keinen Content</p>';
-                $title = "Title";
-                $description = "No description available.";
-                $autohor = "No title available.";
-                $keywords = "No keywords available.";
+                        $page_id = $row['ID'];
+                        $name = $row['PageName'];
+                        $pageContent = $row['PageContent'];
+                        break;
+                    }
+
+                    $title = cms_getSubPageTitle($page_id);
+                    $description = cms_getWebsiteDescription($page_id);
+                    $autohor = cms_getWebsiteTitle();
+                    $keywords = cms_getWebsiteKeywords($page_id);
+                } else {
+                    $pageContent = '<p>Diese Seite beinhaltet keinen Content</p>';
+                    $title = "Title";
+                    $description = "No description available.";
+                    $autohor = "No title available.";
+                    $keywords = "No keywords available.";
+                }
             }
         }
 
