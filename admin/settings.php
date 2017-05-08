@@ -59,9 +59,46 @@ if (!isset($_SESSION['userid'])) {
 
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
-                                        <p class="bold">Website title: </p>
-                                        <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
-                                        <input id="cms_setWebsiteTitle-btn" type="submit" value="Change title" class="btn btn-default btn-green margin-top-sm">
+                                        <div class="form-group">
+                                            <p class="bold">Website title: </p>
+                                            <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
+                                        </div>
+                                        
+                                        <hr class="medium">
+                                        
+                                        <div class="form-group">
+                                            <label for="text">Phonenumber:</label>
+                                            <input type="text" class="form-control" id="" name="phonenumber" placeholder="Enter Phonenumber">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                                        </div>
+                                        
+                                        <hr class="medium">
+                                        
+                                        <div class="form-group">
+                                            <label for="text">Facebook:</label>
+                                            <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Enter Facebook link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">Twitter:</label>
+                                            <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Enter Twitter link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">Github:</label>
+                                            <input type="text" class="form-control" id="github" name="github" placeholder="Enter Github link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">CodePen:</label>
+                                            <input type="text" class="form-control" id="codepen" name="codepen" placeholder="Enter CodePen link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text">GooglePlus:</label>
+                                            <input type="text" class="form-control" id="googleplus" name="googleplus" placeholder="Enter GooglePlus link">
+                                        </div>
+                                        
+                                        <input id="cms_setWebsiteTitle-btn" type="submit" value="Submit" class="btn btn-default btn-green margin-top-sm">
                                     </div>
                                 </div>
 
