@@ -59,46 +59,81 @@ if (!isset($_SESSION['userid'])) {
 
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
-                                        <div class="form-group">
-                                            <p class="bold">Website title: </p>
-                                            <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
-                                        </div>
                                         
-                                        <hr class="medium">
+                                        <?php
+                                        if (isset($_POST['submit'])) {
+                                            
+                                        }
+                                        ?>
                                         
-                                        <div class="form-group">
-                                            <label for="text">Phonenumber:</label>
-                                            <input type="text" class="form-control" id="" name="phonenumber" placeholder="Enter Phonenumber">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email:</label>
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                                        </div>
-                                        
-                                        <hr class="medium">
-                                        
-                                        <div class="form-group">
-                                            <label for="text">Facebook:</label>
-                                            <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Enter Facebook link">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text">Twitter:</label>
-                                            <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Enter Twitter link">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text">Github:</label>
-                                            <input type="text" class="form-control" id="github" name="github" placeholder="Enter Github link">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text">CodePen:</label>
-                                            <input type="text" class="form-control" id="codepen" name="codepen" placeholder="Enter CodePen link">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text">GooglePlus:</label>
-                                            <input type="text" class="form-control" id="googleplus" name="googleplus" placeholder="Enter GooglePlus link">
-                                        </div>
-                                        
-                                        <input id="cms_setWebsiteTitle-btn" type="submit" value="Submit" class="btn btn-default btn-green margin-top-sm">
+                                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                                            <?php
+                                            $statement = "SELECT * FROM site_info;";
+
+                                            if ($_res = $conn->query($statement)) {
+                                                if ($_res->num_rows > 0) {
+                                                    $row = $_res->fetch_assoc();
+                                                    $sitename = $row['sitename'];
+                                                    $site_phonenumber = $row['site_phonenumber'];
+                                                    $site_email = $row['site_email'];
+                                                    $link_facebook = $row['link_facebook'];
+                                                    $link_twitter = $row['link_twitter'];
+                                                    $link_github = $row['link_github'];
+                                                    $link_codepen = $row['link_codepen'];
+                                                    $link_googleplus = $row['link_googleplus'];
+                                                }
+                                            }
+                                            ?>
+
+                                            <h3>Website title</h3>
+
+                                            <div class="form-group">
+                                                <p class="bold">Website title: </p>
+                                                <input id="cms_setWebsiteTitle-value" class="form-control" type="text" value="<?php echo cms_getWebsiteTitle() ?>">
+                                            </div>
+
+                                            <hr class="medium">
+
+                                            <h3>Contact information</h3>
+
+                                            <div class="form-group">
+                                                <label for="text">Phonenumber:</label>
+                                                <input type="text" class="form-control" id="" name="phonenumber" <?php echo strlen($site_phonenumber) > 0 ? "value='$site_phonenumber'" : "placeholder='Enter Phonenumber'"; ?>>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" class="form-control" id="email" name="email" <?php echo strlen($site_email) > 0 ? "value='$site_email'" : "placeholder='Enter E-Mail'"; ?>>
+                                            </div>
+
+                                            <hr class="medium">
+
+                                            <h3>Social media links</h3>
+
+                                            <div class="form-group">
+                                                <label for="text">Facebook:</label>
+                                                <input type="text" class="form-control" id="facebook" name="facebook" <?php echo strlen($link_facebook) > 0 ? "value='$link_facebook'" : "placeholder='Enter Facebook link'"; ?>>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="text">Twitter:</label>
+                                                <input type="text" class="form-control" id="twitter" name="twitter" <?php echo strlen($link_twitter) > 0 ? "value='$link_twitter'" : "placeholder='Enter Twitter link'"; ?>>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="text">Github:</label>
+                                                <input type="text" class="form-control" id="github" name="github" <?php echo strlen($link_github) > 0 ? "value='$link_github'" : "placeholder='Enter Github link'"; ?>>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="text">CodePen:</label>
+                                                <input type="text" class="form-control" id="codepen" name="codepen" <?php echo strlen($link_codepen) > 0 ? "value='$link_codepen'" : "placeholder='Enter CodePen link'"; ?>>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="text">GooglePlus:</label>
+                                                <input type="text" class="form-control" id="googleplus" name="googleplus" <?php echo strlen($link_googleplus) > 0 ? "value='$link_googleplus'" : "placeholder='Enter Google Plus link'"; ?>>
+                                            </div>
+
+                                            <input id="cms_setWebsiteTitle-btn" name="submit" type="submit" value="Submit" class="btn btn-default btn-green margin-top-sm">
+
+                                        </form>
+
                                     </div>
                                 </div>
 
@@ -118,7 +153,7 @@ if (!isset($_SESSION['userid'])) {
         include './admin_footer.php';
         ?>
 
-        <script>
+        <!--<script>
             document.getElementById("cms_setWebsiteTitle-btn").addEventListener("click", function () {
                 var sendData = {};
                 sendData["cms_setWebsiteTitle"] = document.getElementById("cms_setWebsiteTitle-value").value;
@@ -128,6 +163,6 @@ if (!isset($_SESSION['userid'])) {
             function receiveDataFromPHP(data, status) {
                 location.reload();
             }
-        </script>
+        </script>-->
     </body>
 </html>

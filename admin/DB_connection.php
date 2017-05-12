@@ -1,9 +1,10 @@
 <?php
 
-$_db_host = "localhost";
-$_db_datenbank = "cms_pages";
-$_db_username = "root";
-$_db_passwort = "";
+if (is_file('./root/.$DB_info$')) {
+    include './root/.$DB_info$';
+} else {
+    include './admin/root/.$DB_info$';
+}
 
 //$conn = new mysqli($_db_host, $_db_username, $_db_passwort, $_db_datenbank);
 //

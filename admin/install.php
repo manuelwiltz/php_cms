@@ -3,10 +3,11 @@ session_start();
 if (!isset($_SESSION['login'])) {
     echo '<script>window.location.replace("login.php");</script>';
 }
-$_db_host = "localhost";
-$_db_datenbank = "cms_pages";
-$_db_username = "root";
-$_db_passwort = "";
+if (is_file('./root/.$DB_info$')) {
+    include './root/.$DB_info$';
+} else {
+    include './admin/root/.$DB_info$';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +36,6 @@ $_db_passwort = "";
 
             <div class="row">
                 <?php
-                $db_name = "cms_pages";
-
                 if ((isset($_POST['site_name']) && strlen($_POST['site_name']) > 0) &&
                         (isset($_POST['firstname']) && strlen($_POST['firstname']) > 0) &&
                         (isset($_POST['lastname']) && strlen($_POST['lastname']) > 0) &&
@@ -53,10 +52,10 @@ $_db_passwort = "";
                         echo $conn->connect_error;
                     } else {
 
-                        $statement = "CREATE DATABASE $db_name";
+                        $statement = "CREATE DATABASE $_db_datenbank";
                         if ($conn->query($statement)) {
 
-                            $conn = new mysqli($_db_host, $_db_username, $_db_passwort, "$db_name");
+                            $conn = new mysqli($_db_host, $_db_username, $_db_passwort, "$_db_datenbank");
 
                             if (!$conn->connect_error) {
 

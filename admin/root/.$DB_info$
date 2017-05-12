@@ -1,0 +1,6 @@
+<?php
+$_db_host = "localhost";
+$_db_datenbank = "cms_pages";
+$_db_username = "root";
+$_db_passwort = "";
+?>
