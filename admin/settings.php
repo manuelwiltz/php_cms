@@ -59,31 +59,47 @@ if (!isset($_SESSION['userid'])) {
 
                                 <div class="row">
                                     <div class="col-md-12 padding-sm">
-                                        
+
                                         <?php
                                         if (isset($_POST['submit'])) {
+                                            $site_name = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_name']))));
                                             
+                                            $phonenumber = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['phonenumber']))));
+                                            $site_email = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_email']))));
+                                            
+                                            $site_facebook = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_facebook']))));
+                                            $site_twitter = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_twitter']))));
+                                            $site_github = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_github']))));
+                                            $site_codepen = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_codepen']))));
+                                            $site_googleplus = $conn->real_escape_string(htmlspecialchars(stripcslashes(trim($_POST['site_googleplus']))));
+                                            
+                                            $statement = "UPDATE site_info SET sitename = '', site_phonenumber = '', site_email = '', link_facebook = '', link_twitter = '', link_github = '', link_codepen = '', link_googleplus = '' WHERE `site_info`.`sitename` = 'Goats'";
+                                            
+                                            if ($res = $conn->query($statement)) {
+                                                //header("Location: admin.php");
+                                                echo '<script>location.replace("settings.php");</script>';
+                                            }
                                         }
                                         ?>
-                                        
-                                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                                            <?php
-                                            $statement = "SELECT * FROM site_info;";
 
-                                            if ($_res = $conn->query($statement)) {
-                                                if ($_res->num_rows > 0) {
-                                                    $row = $_res->fetch_assoc();
-                                                    $sitename = $row['sitename'];
-                                                    $site_phonenumber = $row['site_phonenumber'];
-                                                    $site_email = $row['site_email'];
-                                                    $link_facebook = $row['link_facebook'];
-                                                    $link_twitter = $row['link_twitter'];
-                                                    $link_github = $row['link_github'];
-                                                    $link_codepen = $row['link_codepen'];
-                                                    $link_googleplus = $row['link_googleplus'];
-                                                }
+                                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                                        <?php
+                                        $statement = "SELECT * FROM site_info;";
+
+                                        if ($_res = $conn->query($statement)) {
+                                            if ($_res->num_rows > 0) {
+                                                $row = $_res->fetch_assoc();
+                                                $sitename = $row['sitename'];
+                                                $site_phonenumber = $row['site_phonenumber'];
+                                                $site_email = $row['site_email'];
+                                                $link_facebook = $row['link_facebook'];
+                                                $link_twitter = $row['link_twitter'];
+                                                $link_github = $row['link_github'];
+                                                $link_codepen = $row['link_codepen'];
+                                                $link_googleplus = $row['link_googleplus'];
                                             }
-                                            ?>
+                                        }
+                                        ?>
 
                                             <h3>Website title</h3>
 
@@ -149,9 +165,9 @@ if (!isset($_SESSION['userid'])) {
             </div>
         </section>
 
-        <?php
-        include './admin_footer.php';
-        ?>
+<?php
+include './admin_footer.php';
+?>
 
         <!--<script>
             document.getElementById("cms_setWebsiteTitle-btn").addEventListener("click", function () {
