@@ -105,7 +105,7 @@ if (!isset($_SESSION['userid'])) {
                                                 echo '<td>' . $name . '</td>';
                                                 echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
                                                 echo '<td>' . $created . '</td>';
-                                                echo '<td><a class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a class="btn btn-default btn-green" href="../index.php?id=' . $id . '">View</a> <a class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
+                                                echo '<td><a style="margin: 2px;" class="btn btn-default" href="edit.php?id=' . $id . '">Edit</a> <a style="margin: 2px;" class="btn btn-default btn-green" href="../index.php?id=' . $id . '">View</a> <a style="margin: 2px;" class="btn btn-danger" href="delete_page.php?id=' . $id . '">Delete</a></td></td>';
                                                 echo '</tr>';
                                             }
                                         }
@@ -144,7 +144,7 @@ if (!isset($_SESSION['userid'])) {
                                                 echo '<td>' . $username . '</td>';
                                                 echo '<td>' . $email . '</td>';
                                                 echo '<td>' . $joined . '</td>';
-                                                echo '<td><a class="btn btn-default" href="profile.php?id=' . $id . '">Edit</a> <a class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
+                                                echo '<td><a style="margin: 2px;" class="btn btn-default" href="profile.php?id=' . $id . '">Edit</a> <a style="margin: 2px;" class="btn btn-danger" href="delete_user.php?id=' . $id . '">Delete</a></td>';
                                                 echo '</tr>';
                                             }
                                         }
